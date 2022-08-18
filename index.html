@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section id="container-box" class="container">
+        <h1 class="message" id="message">Player 1 Turn</h1>
+        <h2 >Round <span id="roundMessage">1</span></h2>
+        <div class="players">
+            <div id="player1">
+                <h2 class="scorecard">Score:
+                    <span id="player1Score">0</span>
+                </h2>
+                <div  id="player1Dice" class="dice active">-</div>
+                <div id="winTrackerPlayer1"     class="win-tracker-player1 win-counter">
+                    <div class="round-1 round" id="player-1-round1"></div>
+                    <div class="round-2 round" id="player-1-round2"></div>
+                    <div class="round-3 round" id="player-1-round3"></div>
+                    <div class="round-4 round" id="player-1-round4"></div>
+                    <div class="round-5 round" id="player-1-round5"></div>
+                </div>
+            </div>
+            
+                <div id="player2">
+                    <h2 class="scorecard">Score:
+                        <span id="player2Score">0</span>
+                    </h2>
+                    <div  id="player2Dice" class="dice">-</div>
+                    <div id="winTrackerPlayer2"     class="win-tracker-player2 win-counter">
+                        <div class="round-1 round" id="player-2-round1"></div>
+                        <div class="round-2 round" id="player-2-round2"></div>
+                        <div class="round-3 round" id="player-2-round3"></div>
+                        <div class="round-4 round" id="player-2-round4"></div>
+                        <div class="round-5 round" id="player-2-round5"></div>
+                    </div>
+                </div>
+        </div>
+        <div class="btn-container">
+            <button class="roll-btn" id="rollBtn">Roll Dice</button>
+            <button class="restart-btn" id="restartBtn">Reset Game</button>
+            <button class="next-round-btn" id="nextRoundBtn">Next Round</button>
+        </div>
+    </section>
+
+
+
+
+
+ <script src="app.js"></script>   
+</body>
+</html>
