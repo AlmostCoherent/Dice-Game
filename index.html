@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="SetupGame()">
     <section id="container-box" class="container">
         <h1 class="message" id="message">Player 1 Turn</h1>
         <h2 >Round <span id="roundMessage">1</span></h2>
@@ -54,6 +54,14 @@
 
 
 
- <script src="app.js"></script>   
+    <script src="appConstants.js"></script>   
+    <script src="./models/player.js"></script>
+    <script src="diceRollContext.js"></script>
+    <script src="resetGame.js"></script>
+    <script src="resetRound.js"></script>
+    <script src="roundContext.js"></script>
+    <script src="roundContext.js"></script>
+    <script src="roundContext.js"></script>
+    <script src="app.js"></script>   
 </body>
 </html>

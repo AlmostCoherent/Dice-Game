@@ -1,35 +1,12 @@
-//* Player Elements
-let player1Score = 0;
-let player2Score = 0;
-player1Turn = true;
-let player1RoundsWon = 0;
-let player2RoundsWon = 0;
-const message = document.getElementById("message");
-const player1Scorecard = document.getElementById("player1Score");
-const player2Scorecard = document.getElementById("player2Score");
-const player1Dice = document.getElementById("player1Dice");
-const player2Dice = document.getElementById("player2Dice");
-//* BUTTONS
-const rollButton = document.getElementById("rollBtn");
-const restartButton = document.getElementById("restartBtn");
-const nextRound = document.getElementById("nextRoundBtn");
-
-const container = document.getElementById("container-box");
-//* ROUND INDICATORS
-const player1Round1 = document.getElementById("player-1-round1");
-const player1Round2 = document.getElementById("player-1-round2");
-const player1Round3 = document.getElementById("player-1-round3");
-const player1Round4 = document.getElementById("player-1-round4");
-const player1Round5 = document.getElementById("player-1-round5");
-
-const player2Round1 = document.getElementById("player-2-round1");
-const player2Round2 = document.getElementById("player-2-round2");
-const player2Round3 = document.getElementById("player-2-round3");
-const player2Round4 = document.getElementById("player-2-round4");
-const player2Round5 = document.getElementById("player-2-round5");
-
-let currentRound = 1;
-const roundMessage = document.getElementById("roundMessage");
+function SetupGame(numberOfPlayers){
+  var players = [];
+  for(var i; i < numberOfPlayers; i++){
+    //we +1 so that player 1 is 1 and not zero
+    players.add(new Player(i+1, 0, 0))
+  }
+  
+  currentGame = new Game(players, "New game, yay!", 1);
+}
 
 function showNextRoundButton() {
   rollButton.style.display = "none";
@@ -55,6 +32,9 @@ function winner() {
 }
 
 function roundTracker() {
+  // Return winning player if there is one.
+  var result = doWeHaveAWinner();
+  
   //! ROUND 1
   if (player1Score >= 20 && currentRound === 1) {
     player1Round1.style.backgroundColor = "green";
@@ -132,39 +112,7 @@ function roundTracker() {
 }
 
 rollButton.addEventListener("click", function () {
-  const randomNumber = Math.floor(Math.random() * 6) + 1;
-  if (player1Turn) {
-    message.textContent = "Player 1 Turn";
-    player1Score += randomNumber;
-    player1Dice.textContent = randomNumber;
-    player1Scorecard.textContent = player1Score;
-    player1Dice.classList.add("active");
-    player2Dice.classList.remove("active");
-  } else {
-    message.textContent = "Player 2 Turn";
-    player2Score += randomNumber;
-    player2Dice.textContent = randomNumber;
-    player2Scorecard.textContent = player2Score;
-    player2Dice.classList.add("active");
-    player1Dice.classList.remove("active");
-  }
-
-  if (player1Score >= 20) {
-    container.classList.add("winner");
-    message.style.color = "white";
-
-    showNextRoundButton();
-  } else if (player2Score >= 20) {
-    container.classList.add("winner");
-    message.style.color = "white";
-
-    showNextRoundButton();
-  }
-
-  roundTracker();
-  winner();
-
-  player1Turn = !player1Turn;
+  rollDice();
 });
 
 nextRound.addEventListener("click", function () {
@@ -173,51 +121,3 @@ nextRound.addEventListener("click", function () {
 restartButton.addEventListener("click", function () {
   restartGame();
 });
-function roundReset() {
-  player1Score = 0;
-  player2Score = 0;
-  player1Turn = true;
-  container.classList.remove("winner");
-  message.style.color = "black";
-  player1Scorecard.textContent = 0;
-  player2Scorecard.textContent = 0;
-  player1Dice.textContent = "-";
-  player2Dice.textContent = "-";
-  message.textContent = "Player 1 Turn";
-  nextRound.style.display = "none";
-  rollButton.style.display = "inline";
-  player2Dice.classList.remove("active");
-  player1Dice.classList.add("active");
-}
-function restartGame() {
-  player1Score = 0;
-  player2Score = 0;
-  player1Turn = true;
-  container.classList.remove("winner");
-  container.classList.remove("gameWinner");
-  message.style.color = "black";
-  player1Scorecard.textContent = 0;
-  player2Scorecard.textContent = 0;
-  player1Dice.textContent = "-";
-  player2Dice.textContent = "-";
-  message.textContent = "Player 1 Turn";
-  nextRound.style.display = "none";
-  rollButton.style.display = "inline";
-  player2Dice.classList.remove("active");
-  player1Dice.classList.add("active");
-  player1Round1.style.backgroundColor = "white";
-  player1Round2.style.backgroundColor = "white";
-  player1Round3.style.backgroundColor = "white";
-  player1Round4.style.backgroundColor = "white";
-  player1Round5.style.backgroundColor = "white";
-  player2Round1.style.backgroundColor = "white";
-  player2Round2.style.backgroundColor = "white";
-  player2Round3.style.backgroundColor = "white";
-  player2Round4.style.backgroundColor = "white";
-  player2Round5.style.backgroundColor = "white";
-  restartButton.style.display = "none";
-  player1RoundsWon = 0;
-  player2RoundsWon = 0;
-  currentRound = 1;
-  roundMessage.textContent = 1;
-}
